@@ -19,4 +19,14 @@ class EnigmaTest < Minitest::Test
     ]
     assert_equal @enigma_1.char_set, chars
   end
+
+  def test_encrypt
+    output = {
+      :ciphertext => 'kspdrn fuzh',
+      :key => '01012',
+      :date => '220894'
+    }
+
+    assert_equal output, @enigma_1.encrypt('hello world')
+  end
 end
