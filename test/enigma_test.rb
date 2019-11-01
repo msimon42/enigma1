@@ -22,7 +22,7 @@ class EnigmaTest < Minitest::Test
 
   def test_encrypt
     output = {
-      :ciphertext => 'kspdrn fuzh',
+      :ciphertext => 'oopcvj fyvh',
       :key => '01012',
       :date => '220894'
     }
