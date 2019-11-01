@@ -1,4 +1,4 @@
-require_relative 'test/helper'
+require_relative 'test_helper'
 require_relative '../lib/enigma'
 
 class EnigmaTest < Minitest::Test
@@ -8,5 +8,15 @@ class EnigmaTest < Minitest::Test
 
   def test_existence
     assert_instance_of Enigma, @enigma_1
-  end     
+  end
+
+  def test_chars
+    chars = [
+      'a', 'b', 'c', 'd', 'e', 'f', 'g',
+      'h', 'i', 'j', 'k', 'l', 'm', 'n',
+      'o', 'p', 'q', 'r', 's', 't', 'u',
+      'v', 'w', 'x', 'y', 'z', ' '
+    ]
+    assert_equal @enigma_1.char_set, chars
+  end
 end
