@@ -54,4 +54,8 @@ class EnigmaTest < Minitest::Test
     assert_equal [10, 12, 4, 18], @enigma_1.get_keys('01012', '220894')
   end
 
+  def test_rotate_letter
+    assert_equal 'k', @char_set.rotate_letter('h', 3)
+  end   
+
 end
