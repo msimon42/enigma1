@@ -29,4 +29,15 @@ class EnigmaTest < Minitest::Test
 
     assert_equal output, @enigma_1.encrypt('hello world')
   end
+
+  def test_decrypt
+    output = {
+      :ciphertext => 'hello world',
+      :key => '01012',
+      :date => '220894'
+    }
+
+    assert_equal output, @enigma_1.decrypt('oopcvj fyvh')
+  end   
+
 end
