@@ -46,4 +46,8 @@ class EnigmaTest < Minitest::Test
     assert_equal [1, 10, 1, 12], @enigma_1.get_raw_keys('01012')
   end
 
+  def test_date_shift
+    assert_equal [9, 2, 3, 6], @enigma.get_date_shift('220894')
+  end
+
 end
