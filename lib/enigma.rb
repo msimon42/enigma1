@@ -37,7 +37,9 @@ class Enigma
     keys
   end
 
-  def rotate_letter(letter, amt)
-
-  end   
+  def rotate_char(char, amt)
+    i = @char_set.find_index(char)
+    rot_arr = @char_set.rotate(amt)
+    replacement_char = rot_arr[i]
+  end
 end
