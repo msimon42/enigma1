@@ -55,7 +55,7 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_rotate_char
-    assert_equal 'k', @char_set.rotate_char('h', 3)
+    assert_equal 'k', @enigma_1.rotate_char('h', 3)
   end
 
 end
