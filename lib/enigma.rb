@@ -36,4 +36,8 @@ class Enigma
     end
     keys
   end
+
+  def rotate_letter(letter, amt)
+
+  end   
 end
