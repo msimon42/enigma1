@@ -6,6 +6,7 @@ class Enigma
   end
 
   def encrypt(phrase, key=nil, date=nil)
+    self.get_keys(key, date)
 
   end
 
@@ -35,6 +36,17 @@ class Enigma
       keys << num += date_shift[i]
     end
     keys
+  end
+
+  def generate_key_hash(key, date)
+    output = Hash.new
+    full_key = self.get_keys(key, date)
+    letters = @char_set[0..3]
+    full_key.each_with_index do |num, i|
+      output[letters[i]] = num
+    end
+    output
+
   end
 
   def rotate_char(char, amt)
