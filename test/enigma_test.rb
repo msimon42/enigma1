@@ -70,7 +70,16 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_generate_keys_array
-    assert_equal ['a', 'b', 'c', 'd', 'a', 'b', 'c', 'd', 'a', 'b', 'c'], @enigma_1.generate_keys_array('hello world')
+    keys_arr = [
+      'a', 'b', 'c', 'd',
+      'a', 'b', 'c', 'd',
+      'a', 'b', 'c']
+
+    assert_equal keys_arr, @enigma_1.generate_keys_array('hello world')
   end
 
+  def test_encrypt_decrypt_helper
+    assert_equal 'hello world', @enigma_1.encrypt_decrypt_helper('rqpcyl faxh','01012','220894',false)
+    assert_equal 'rqpcyl faxh', @enigma_1.encrypt_decrypt_helper('hello world','01012','220894')
+  end 
 end
