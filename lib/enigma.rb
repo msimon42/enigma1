@@ -5,9 +5,26 @@ class Enigma
     @char_set = ('a'..'z').to_a << ' '
   end
 
-  def encrypt(phrase, key=nil, date=nil)
-    self.get_keys(key, date)
+  def encrypt(phrase, key, date)
+    keys = self.generate_key_hash(key, date)
+    split_phrase = phrase.split(//)
+    mod = (split_phrase.length % 4)
+    keys_arr = Array.new
 
+    (@char_set[0..3]).cycle((split_phrase.length - mod) / 4) do |char|
+      keys_arr << char
+    end
+    keys_arr << @char_set.first(mod)
+    real_keys = keys_arr.flatten
+    ciphertext = Array.new
+    split_phrase.each_with_index do |char, i|
+      ciphertext << self.rotate_char(char, keys[real_keys[i]])
+    end
+    output = {
+      :ciphertext => ciphertext.join,
+      :key => key,
+      :date => date
+    }
   end
 
   def decrypt(phrase, key=nil, date=nil)
