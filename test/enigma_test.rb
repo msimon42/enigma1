@@ -69,4 +69,8 @@ class EnigmaTest < Minitest::Test
     assert_equal output, @enigma_1.generate_key_hash('01012', '220894')
   end
 
+  def test_generate_keys_array
+    assert_equal ['a', 'b', 'c', 'd', 'a', 'b', 'c', 'd', 'a', 'b', 'c'], @enigma_1.generate_keys_array('hello world')
+  end
+
 end
