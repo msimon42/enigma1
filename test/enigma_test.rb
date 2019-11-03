@@ -60,4 +60,14 @@ class EnigmaTest < Minitest::Test
     assert_equal 'i', @enigma_1.rotate_char('x', 12)
   end
 
+  def test_generate_key_hash
+    output = {
+      'a' => 10,
+      'b' => 12,
+      'c' => 4,
+      'd' => 18
+    }
+    assert_equal output, @enigma_1.generate_jey_hash
+  end
+
 end
