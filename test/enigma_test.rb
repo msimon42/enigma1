@@ -31,14 +31,13 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_decrypt
-    skip
     output = {
       :ciphertext => 'hello world',
       :key => '01012',
       :date => '220894'
     }
 
-    assert_equal output, @enigma_1.decrypt('oopcvj fyvh')
+    assert_equal output, @enigma_1.decrypt('rqpcyl faxh', '01012', '220894')
   end
 
   def test_get_raw_keys
@@ -81,5 +80,5 @@ class EnigmaTest < Minitest::Test
   def test_encrypt_decrypt_helper
     assert_equal 'hello world', @enigma_1.encrypt_decrypt_helper('rqpcyl faxh','01012','220894',false)
     assert_equal 'rqpcyl faxh', @enigma_1.encrypt_decrypt_helper('hello world','01012','220894')
-  end 
+  end
 end
