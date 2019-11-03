@@ -8,17 +8,10 @@ class Enigma
   def encrypt(phrase, key, date)
     keys = self.generate_key_hash(key, date)
     split_phrase = phrase.split(//)
-    mod = (split_phrase.length % 4)
-    keys_arr = Array.new
-
-    (@char_set[0..3]).cycle((split_phrase.length - mod) / 4) do |char|
-      keys_arr << char
-    end
-    keys_arr << @char_set.first(mod)
-    real_keys = keys_arr.flatten
+    keys_arr = self.generate_keys_array(split_phrase)
     ciphertext = Array.new
     split_phrase.each_with_index do |char, i|
-      ciphertext << self.rotate_char(char, keys[real_keys[i]])
+      ciphertext << self.rotate_char(char, keys[keys_arr[i]])
     end
     output = {
       :ciphertext => ciphertext.join,
@@ -31,9 +24,15 @@ class Enigma
 
   end
 
-  def generate_keys_array(phrase)
-
-  end  
+  def generate_keys_array(split_phrase)
+    mod = (split_phrase.length % 4)
+    keys_arr = Array.new
+    (@char_set[0..3]).cycle((split_phrase.length - mod) / 4) do |char|
+      keys_arr << char
+    end
+    keys_arr << @char_set.first(mod)
+    real_keys = keys_arr.flatten
+  end
 
   def get_date_shift(date)
     squared = date.to_i * date.to_i
