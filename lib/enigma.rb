@@ -5,7 +5,7 @@ class Enigma
     @char_set = ('a'..'z').to_a << ' '
   end
 
-  def encrypt(phrase, key, date)
+  def encrypt(phrase, key=nil, date=nil)
     keys = self.generate_key_hash(key, date)
     split_phrase = phrase.split(//)
     keys_arr = self.generate_keys_array(split_phrase)
@@ -22,6 +22,23 @@ class Enigma
 
   def decrypt(phrase, key=nil, date=nil)
 
+  end
+
+  def encrypt_decrypt_helper(phrase, key, date, encrypt=true)
+    keys = self.generate_key_hash(key, date)
+    split_phrase = phrase.split(//)
+    keys_arr = self.generate_keys_array(split_phrase)
+    ciphertext = Array.new
+    if encrypt
+      split_phrase.each_with_index do |char, i|
+        ciphertext << self.rotate_char(char, keys[keys_arr[i]])
+      end
+    else
+      split_phrase.each_with_index do |char, i|
+        ciphertext << self.rotate_char(char, -keys[keys_arr[i]])
+      end
+    end
+    ciphertext.join
   end
 
   def generate_keys_array(split_phrase)
