@@ -31,6 +31,10 @@ class Enigma
 
   end
 
+  def generate_keys_array(phrase)
+
+  end  
+
   def get_date_shift(date)
     squared = date.to_i * date.to_i
     shift_arr = squared.to_s.split(//).map{|num| num.to_i}.last(4)
