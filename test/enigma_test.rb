@@ -21,14 +21,13 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_encrypt
-    skip
     output = {
       :ciphertext => 'oopcvj fyvh',
       :key => '01012',
       :date => '220894'
     }
 
-    assert_equal output, @enigma_1.encrypt('hello world')
+    assert_equal output, @enigma_1.encrypt('hello world', '01012', '220894')
   end
 
   def test_decrypt
@@ -67,7 +66,7 @@ class EnigmaTest < Minitest::Test
       'c' => 4,
       'd' => 18
     }
-    assert_equal output, @enigma_1.generate_jey_hash
+    assert_equal output, @enigma_1.generate_key_hash('01012', '220894')
   end
 
 end
