@@ -42,11 +42,8 @@ class Enigma
     output = Hash.new
     full_key = self.get_keys(key, date)
     letters = @char_set[0..3]
-    full_key.each_with_index do |num, i|
-      output[letters[i]] = num
-    end
+    full_key.each_with_index {|num, i| output[letters[i]] = num}
     output
-
   end
 
   def rotate_char(char, amt)
