@@ -6,22 +6,23 @@ class Enigma
   end
 
   def encrypt(phrase, key=nil, date=nil)
-    keys = self.generate_key_hash(key, date)
-    split_phrase = phrase.split(//)
-    keys_arr = self.generate_keys_array(split_phrase)
-    ciphertext = Array.new
-    split_phrase.each_with_index do |char, i|
-      ciphertext << self.rotate_char(char, keys[keys_arr[i]])
-    end
+    ciphertext = self.encrypt_decrypt_helper(phrase, key, date)
+
     output = {
-      :ciphertext => ciphertext.join,
+      :ciphertext => ciphertext,
       :key => key,
       :date => date
     }
   end
 
   def decrypt(phrase, key=nil, date=nil)
+    ciphertext = self.encrypt_decrypt_helper(phrase, key, date, false)
 
+    output = {
+      :ciphertext => ciphertext,
+      :key => key,
+      :date => date
+    }
   end
 
   def encrypt_decrypt_helper(phrase, key, date, encrypt=true)
