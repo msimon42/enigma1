@@ -1,4 +1,5 @@
 class Encrypt
+  attr_reader :key
   def initialize
     @enig = Enigma.new
   end
@@ -11,5 +12,19 @@ class Encrypt
     puts "Please enter a date, or type 'skip' to use today's date."
     @date = gets.chomp
   end
-    
+
+  def generate_key
+    if @key == 'skip'
+      return @key = KeyGenerator.generate
+    end
+  end
+
+  def generate_date
+    if @date == 'skip'
+      return @date = DateGenerator.generate
+    end
+  end
+
+
+
 end
