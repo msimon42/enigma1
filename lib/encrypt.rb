@@ -24,7 +24,7 @@ class Encrypt
   def read_file
     file = File.open(@filename)
     file_data = file.readlines.map(&:chomp)
-    @phrase = file_data[0]
+    @phrase = file_data[0].downcase
     @key = file_data[1]
     @date = file_data[2]
   end
@@ -36,8 +36,14 @@ class Encrypt
   def write_to_file
     File.open(@outfilename, 'w') {|file| file.write @output}
   end
+
+  def self.run
+    new = self.new
+    new.user_input
+    new.read_file
+    new.encrypt
+    new.write_to_file
+  end
 end
 
-encrypt = Encrypt.new
-encrypt.user_input
-encrypt.read_file
+Encrypt.run
