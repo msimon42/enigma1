@@ -86,6 +86,7 @@ class Enigma
 
   def rotate_char(char, amt)
     i = @char_set.find_index(char)
+    return char if !i
     rot_arr = @char_set.rotate(amt)
     replacement_char = rot_arr[i]
   end
