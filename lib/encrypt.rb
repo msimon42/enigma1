@@ -1,3 +1,5 @@
+require 'pry'
+require_relative 'enigma'
 class Encrypt
   attr_reader :key
   def initialize
@@ -8,24 +10,26 @@ class Encrypt
     puts 'Please enter a filename that contains your message: '
     @filename = gets.chomp
     puts 'Please enter a filename to save your encrypted message: '
-    @outfile = gets.chomp
+    @outfilename = gets.chomp
   end
 
   def generate_key
-    if @key == 'skip'
-      return @key = KeyGenerator.generate
-    end
+    KeyGenerator.generate
   end
 
   def generate_date
-    if @date == 'skip'
-      return @date = DateGenerator.generate
-    end
+    DateGenerator.generate
   end
 
-  def encrypt
-
-
-
-
+  def read_file
+    file = File.open(@filename)
+    file_data = file.readlines.map(&:chomp)
+    @phrase = file_data[0]
+    @key = file_data[1]
+    @date = file_data[2]
+  end
 end
+
+encrypt = Encrypt.new
+encrypt.user_input
+encrypt.read_file
