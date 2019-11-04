@@ -28,6 +28,14 @@ class Encrypt
     @key = file_data[1]
     @date = file_data[2]
   end
+
+  def encrypt
+    @output = @enig.encrypt(@phrase, @key, @date)
+  end
+
+  def write_to_file
+    File.open(@outfilename, 'w') {|file| file.write @output}
+  end
 end
 
 encrypt = Encrypt.new
