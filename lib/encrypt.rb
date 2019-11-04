@@ -5,12 +5,10 @@ class Encrypt
   end
 
   def user_input
-    puts 'Please enter a filename: '
+    puts 'Please enter a filename that contains your message: '
     @filename = gets.chomp
-    puts "If you would like to provide a key, please do so here. Otherwise type 'skip'."
-    @key = gets.chomp
-    puts "Please enter a date, or type 'skip' to use today's date."
-    @date = gets.chomp
+    puts 'Please enter a filename to save your encrypted message: '
+    @outfile = gets.chomp
   end
 
   def generate_key
@@ -24,6 +22,9 @@ class Encrypt
       return @date = DateGenerator.generate
     end
   end
+
+  def encrypt
+
 
 
 
