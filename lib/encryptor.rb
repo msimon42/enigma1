@@ -1,6 +1,6 @@
 require_relative 'file_reader'
 require_relative 'enigma'
-class Encrypt
+class Encryptor
   def self.encrypt
     @enig = Enigma.new
     file_names = FileReader.user_input
