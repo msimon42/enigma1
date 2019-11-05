@@ -4,5 +4,5 @@ require_relative 'test_helper'
 class DateGeneratorTest < Minitest::Test
   def test_generate
     assert_equal '041119', DateGenerator.generate
-  end   
+  end
 end
