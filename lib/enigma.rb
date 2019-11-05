@@ -6,7 +6,6 @@ class Enigma
 
   def encrypt(phrase, key=nil, date=nil)
     ciphertext = self.encrypt_decrypt_helper(phrase, key, date)
-
     output = {
       :encryption => ciphertext,
       :key => key,
@@ -16,7 +15,6 @@ class Enigma
 
   def decrypt(phrase, key=nil, date=nil)
     ciphertext = self.encrypt_decrypt_helper(phrase, key, date, false)
-
     output = {
       :decryption => ciphertext,
       :key => key,
@@ -42,10 +40,7 @@ class Enigma
 
   def generate_keys_array(split_phrase)
     mod = (split_phrase.length % 4)
-    keys_arr = Array.new
-    (@char_set[0..3]).cycle((split_phrase.length - mod) / 4) do |char|
-      keys_arr << char
-    end
+    keys_arr = (@char_set[0..3]).cycle((split_phrase.length - mod) / 4).map{|c|c}
     keys_arr << @char_set.first(mod)
     real_keys = keys_arr.flatten
   end
