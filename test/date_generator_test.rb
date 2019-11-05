@@ -3,6 +3,6 @@ require_relative 'test_helper'
 
 class DateGeneratorTest < Minitest::Test
   def test_generate
-    assert_equal '041119', DateGenerator.generate
+    assert_equal Time.now.strftime("%d%m%y"), DateGenerator.generate
   end
 end
