@@ -1,4 +1,3 @@
-
 class Enigma
   attr_reader :char_set
   def initialize
@@ -29,14 +28,13 @@ class Enigma
     keys = self.generate_key_hash(key, date)
     split_phrase = phrase.split(//)
     keys_arr = self.generate_keys_array(split_phrase)
-    ciphertext = Array.new
     if encrypt
-      split_phrase.each_with_index do |char, i|
-        ciphertext << self.rotate_char(char, keys[keys_arr[i]])
+      ciphertext = split_phrase.map.with_index do |char, i|
+        self.rotate_char(char, keys[keys_arr[i]])
       end
     else
-      split_phrase.each_with_index do |char, i|
-        ciphertext << self.rotate_char(char, -keys[keys_arr[i]])
+      ciphertext = split_phrase.map.with_index do |char, i|
+        self.rotate_char(char, -keys[keys_arr[i]])
       end
     end
     ciphertext.join
