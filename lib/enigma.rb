@@ -25,14 +25,6 @@ class Enigma
     }
   end
 
-  def generate_key
-    KeyGenerator.generate
-  end
-
-  def generate_date
-    DateGenerator.generate
-  end
-
   def encrypt_decrypt_helper(phrase, key, date, encrypt=true)
     keys = self.generate_key_hash(key, date)
     split_phrase = phrase.split(//)
