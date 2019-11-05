@@ -9,7 +9,7 @@ class Enigma
     ciphertext = self.encrypt_decrypt_helper(phrase, key, date)
 
     output = {
-      :ciphertext => ciphertext,
+      :encryption => ciphertext,
       :key => key,
       :date => date
     }
@@ -19,7 +19,7 @@ class Enigma
     ciphertext = self.encrypt_decrypt_helper(phrase, key, date, false)
 
     output = {
-      :ciphertext => ciphertext,
+      :decryption => ciphertext,
       :key => key,
       :date => date
     }
