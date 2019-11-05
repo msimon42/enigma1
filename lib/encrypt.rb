@@ -1,8 +1,6 @@
-
+require_relative 'file_reader'
 require_relative 'enigma'
 class Encrypt
-  attr_reader :key
-
   def self.encrypt
     @enig = Enigma.new
     file_names = FileReader.user_input
@@ -11,3 +9,5 @@ class Encrypt
     FileReader.write_to_file(file_names[1], output)
   end
 end
+
+Encrypt.encrypt
