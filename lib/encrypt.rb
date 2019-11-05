@@ -9,5 +9,3 @@ class Encrypt
     FileReader.write_to_file(file_names[1], output)
   end
 end
-
-Encrypt.encrypt

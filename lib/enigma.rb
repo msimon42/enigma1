@@ -1,4 +1,3 @@
-
 class Enigma
   attr_reader :char_set
   def initialize
@@ -29,14 +28,13 @@ class Enigma
     keys = self.generate_key_hash(key, date)
     split_phrase = phrase.split(//)
     keys_arr = self.generate_keys_array(split_phrase)
-    ciphertext = Array.new
     if encrypt
-      split_phrase.each_with_index do |char, i|
-        ciphertext << self.rotate_char(char, keys[keys_arr[i]])
+      ciphertext = split_phrase.map.with_index do |char, i|
+        self.rotate_char(char, keys[keys_arr[i]])
       end
     else
-      split_phrase.each_with_index do |char, i|
-        ciphertext << self.rotate_char(char, -keys[keys_arr[i]])
+      ciphertext = split_phrase.map.with_index do |char, i|
+        self.rotate_char(char, -keys[keys_arr[i]])
       end
     end
     ciphertext.join
@@ -61,18 +59,13 @@ class Enigma
     split_key = Array.new
     raw_keys = Array.new
     key.split(//).map{|num| num.to_i}.each_cons(2){|num_set| split_key << num_set}
-    keys = split_key.map do |num_set|
-      num_set.join.to_i
-    end
+    keys = split_key.map {|num_set| num_set.join.to_i}
   end
 
   def get_keys(key, date)
     raw_keys = self.get_raw_keys(key)
     date_shift = self.get_date_shift(date)
-    keys = Array.new
-    raw_keys.each_with_index do |num, i|
-      keys << num += date_shift[i]
-    end
+    keys = raw_keys.map.with_index {|num, i| num += date_shift[i]}
     keys
   end
 
