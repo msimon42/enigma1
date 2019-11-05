@@ -22,7 +22,7 @@ class EnigmaTest < Minitest::Test
 
   def test_encrypt
     output = {
-      :ciphertext => 'rqpcyl faxh',
+      :encryption => 'rqpcyl faxh',
       :key => '01012',
       :date => '220894'
     }
@@ -32,7 +32,7 @@ class EnigmaTest < Minitest::Test
 
   def test_decrypt
     output = {
-      :ciphertext => 'hello world',
+      :decryption => 'hello world',
       :key => '01012',
       :date => '220894'
     }
