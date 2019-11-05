@@ -59,18 +59,13 @@ class Enigma
     split_key = Array.new
     raw_keys = Array.new
     key.split(//).map{|num| num.to_i}.each_cons(2){|num_set| split_key << num_set}
-    keys = split_key.map do |num_set|
-      num_set.join.to_i
-    end
+    keys = split_key.map {|num_set| num_set.join.to_i}
   end
 
   def get_keys(key, date)
     raw_keys = self.get_raw_keys(key)
     date_shift = self.get_date_shift(date)
-    keys = Array.new
-    raw_keys.each_with_index do |num, i|
-      keys << num += date_shift[i]
-    end
+    keys = raw_keys.map.with_index {|num, i| num += date_shift[i]}
     keys
   end
 
