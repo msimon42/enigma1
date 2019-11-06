@@ -15,4 +15,11 @@ class FileReaderTest < Minitest::Test
     assert file_data[1]
     assert file_data[2]
   end
+
+  def test_file_writer
+    FileReader.write_to_file('test_write.txt', 'test123')
+    test_data = FileReader.read_file('test_write.txt')
+
+    assert_equal test_data[0], 'test123'
+  end
 end
