@@ -6,7 +6,7 @@ class Enigma
 
   def encrypt(phrase, key, date)
     ciphertext = self.encrypt_decrypt_helper(phrase, key, date)
-    output = {
+    {
       :encryption => ciphertext,
       :key => key,
       :date => date
@@ -15,7 +15,7 @@ class Enigma
 
   def decrypt(phrase, key, date)
     ciphertext = self.encrypt_decrypt_helper(phrase, key, date, false)
-    output = {
+   {
       :decryption => ciphertext,
       :key => key,
       :date => date
@@ -42,19 +42,18 @@ class Enigma
     mod = (split_phrase.length % 4)
     keys_arr = (@char_set[0..3]).cycle((split_phrase.length - mod) / 4).map{|c|c}
     keys_arr << @char_set.first(mod)
-    real_keys = keys_arr.flatten
+    keys_arr.flatten
   end
 
   def get_date_shift(date)
     squared = date.to_i * date.to_i
-    shift_arr = squared.to_s.split(//).map{|num| num.to_i}.last(4)
+    squared.to_s.split(//).map{|num| num.to_i}.last(4)
   end
 
   def get_raw_keys(key)
     split_key = Array.new
-    raw_keys = Array.new
     key.split(//).map{|num| num.to_i}.each_cons(2){|num_set| split_key << num_set}
-    keys = split_key.map {|num_set| num_set.join.to_i}
+    split_key.map {|num_set| num_set.join.to_i}
   end
 
   def get_keys(key, date)
@@ -76,6 +75,6 @@ class Enigma
     i = @char_set.find_index(char)
     return char if !i
     rot_arr = @char_set.rotate(amt)
-    replacement_char = rot_arr[i]
+    rot_arr[i]
   end
 end
