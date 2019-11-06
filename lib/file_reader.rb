@@ -18,6 +18,9 @@ class FileReader
   end
 
   def self.write_to_file(filename, message)
-    File.open(filename, 'w') {|file| file.write message}
+    outfile = File.open(filename, 'w')
+    message.each do |line|
+      open(filename, 'a') {|file| file << "#{line}\n"}
+    end
   end
 end
