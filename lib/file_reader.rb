@@ -6,7 +6,7 @@ class FileReader
     filename = gets.chomp
     puts 'Please enter a filename to save your encrypted message: '
     outfilename = gets.chomp
-    file_names = [filename, outfilename]
+    [filename, outfilename]
   end
 
   def self.read_file(filename)
