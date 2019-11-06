@@ -4,7 +4,7 @@ class Enigma
     @char_set = ('a'..'z').to_a << ' '
   end
 
-  def encrypt(phrase, key=nil, date=nil)
+  def encrypt(phrase, key, date)
     ciphertext = self.encrypt_decrypt_helper(phrase, key, date)
     output = {
       :encryption => ciphertext,
@@ -13,7 +13,7 @@ class Enigma
     }
   end
 
-  def decrypt(phrase, key=nil, date=nil)
+  def decrypt(phrase, key, date)
     ciphertext = self.encrypt_decrypt_helper(phrase, key, date, false)
     output = {
       :decryption => ciphertext,
